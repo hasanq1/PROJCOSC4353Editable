@@ -4,7 +4,7 @@ const products = [
       name: 'Wholesale Regular feul',
       image: '/images/87.jpg',
       description:
-        'Our best selling go to feul. Original feul compsotion with additives to keep your engine running like new.',
+        'Our best selling go to feul. Original feul compostion with additives to keep your engine running like new.',
       brand: 'Wholesale O&G',
       category: 'Automotive',
       price: 39.99,
@@ -16,7 +16,7 @@ const products = [
       name: 'Wholesale Mid-Grade feul',
       image: '/images/91.jpg',
       description:
-        'Our best selling go to feul. Original feul compsotion with premium additives and high quality formula to keep your engine running like new.',
+        'Our best selling go to feul. Original feul compostion with premium additives and high quality formula to keep your engine running like new.',
       brand: 'Wholesale O&G',
       category: 'Automotive',
       price: 69.99,
