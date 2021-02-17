@@ -113,7 +113,7 @@ const ProfileScreen = ({ location, history }) => {
         )}
       </Col>
       <Col md={9}>
-        <h2>My Orders</h2>
+        <h2>Previous Feul Quotes and Order History</h2>
         {loadingOrders ? (
           <Loader />
         ) : errorOrders ? (
@@ -139,14 +139,14 @@ const ProfileScreen = ({ location, history }) => {
                   <td>
                     {order.isPaid ? (
                       order.paidAt.substring(0, 10)
-                    ) : (
+                    ):(
                       <i className='fas fa-times' style={{ color: 'red' }}></i>
                     )}
                   </td>
                   <td>
                     {order.isDelivered ? (
                       order.deliveredAt.substring(0, 10)
-                    ) : (
+                    ):(
                       <i className='fas fa-times' style={{ color: 'red' }}></i>
                     )}
                   </td>
