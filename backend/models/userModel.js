@@ -15,15 +15,19 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    company: {
+        type: String,
+        required: false
+    }, 
     states: {
         type: String,
         required: false
-    },
-    isAdmin:{
-        type: Boolean,
-        required: true,
-        default: false
     }
+   // isAdmin:{
+       // type: Boolean,
+       // required: false, // I set to false for testing. 
+       // default: false
+    //}
 },{
     timestamps: true
 })
