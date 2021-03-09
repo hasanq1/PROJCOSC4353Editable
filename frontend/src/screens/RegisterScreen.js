@@ -11,6 +11,7 @@ const RegisterScreen = ({ location, history }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [company, setCompany] = useState('')
   const [states, setStates] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [message, setMessage] = useState(null)
@@ -33,7 +34,7 @@ const RegisterScreen = ({ location, history }) => {
     if (password !== confirmPassword) {
       setMessage('Passwords do not match')
     } else {
-      dispatch(register(name, email, password, states))
+      dispatch(register(name, email, password, company, states))
     }
   }
 
@@ -84,6 +85,17 @@ const RegisterScreen = ({ location, history }) => {
           ></Form.Control>
         </Form.Group>
 
+        <Form.Group controlId='company'>
+          <Form.Label>Enter Company</Form.Label>
+          <Form.Control
+            type='company'
+            placeholder='Enter company'
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+
+
         <Form.Group controlId='states'>
           <Form.Label>State of Residence</Form.Label>
           <Form.Control
@@ -109,8 +121,10 @@ const RegisterScreen = ({ location, history }) => {
           <option value='VI'>VIRGINIA</option> <option value='WA'>WASHINGTON</option> <option value='WV'>WEST VIRGINIA</option> 
           <option value='WI'>WISCONSIN</option> <option value='WY'>WYOMING</option>
           </Form.Control>
-        </Form.Group>
+              </Form.Group>
 
+    
+    
 
         <Button type='submit' variant='primary'>
           Register
