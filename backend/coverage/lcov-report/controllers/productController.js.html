@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">21.67% </span>
+                <span class="strong">11.67% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>13/60</span>
+                <span class='fraction'>7/60</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">21.43% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/14</span>
+                <span class='fraction'>0/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">11.11% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/9</span>
+                <span class='fraction'>0/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">21.67% </span>
+                <span class="strong">11.67% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>13/60</span>
+                <span class='fraction'>7/60</span>
             </div>
         
             
@@ -223,24 +223,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -381,12 +381,12 @@ import Product from '../models/productModel.js'
 // @desc    Fetch all products
 // @route   GET /api/products
 // @access  Public
-const getProducts = asyncHandler(async (req, res) =&gt; {
-  const pageSize = 10
-  const page = Number(req.query.pageNumber) || 1
+const getProducts = asyncHandler(<span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
+  const pageSize = <span class="cstat-no" title="statement not covered" >10</span>
+  const page = <span class="cstat-no" title="statement not covered" >Number(req.query.pageNumber) || 1</span>
 &nbsp;
-  const keyword = req.query.keyword
-    ? <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+  const keyword = <span class="cstat-no" title="statement not covered" >req.query.keyword</span>
+    ? {
         name: {
           $regex: req.query.keyword,
           $options: 'i',
@@ -394,12 +394,12 @@ const getProducts = asyncHandler(async (req, res) =&gt; {
       }
     : {}
 &nbsp;
-  const count = await Product.countDocuments({ ...keyword })
-  const products = await Product.find({ ...keyword })
+  const count = <span class="cstat-no" title="statement not covered" >await Product.countDocuments({ ...keyword })</span>
+  const products = <span class="cstat-no" title="statement not covered" >await Product.find({ ...keyword })</span>
     .limit(pageSize)
     .skip(pageSize * (page - 1))
 &nbsp;
-  res.json({ products, page, pages: Math.ceil(count / pageSize) })
+<span class="cstat-no" title="statement not covered" >  res.json({ products, page, pages: Math.ceil(count / pageSize) })</span>
 })
 &nbsp;
 // @desc    Fetch single product
@@ -541,7 +541,7 @@ export { getProducts, getProductById, deleteProduct, createProduct, updateProduc
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sun Mar 07 2021 18:05:59 GMT-0600 (Central Standard Time)
+                at Tue Mar 09 2021 00:22:43 GMT-0600 (Central Standard Time)
             </div>
         </div>
         <script src="../prettify.js"></script>

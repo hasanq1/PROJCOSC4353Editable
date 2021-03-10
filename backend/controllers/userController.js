@@ -70,7 +70,8 @@ const getUserProfile = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
-      company: user.company
+      company: user.company,
+      states: user.states
      // isAdmin: user.isAdmin,
     })
   } else {

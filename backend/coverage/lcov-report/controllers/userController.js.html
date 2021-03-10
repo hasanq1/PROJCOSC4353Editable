@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">19.67% </span>
+                <span class="strong">20% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>12/61</span>
+                <span class='fraction'>12/60</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">19.67% </span>
+                <span class="strong">20% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>12/61</span>
+                <span class='fraction'>12/60</span>
             </div>
         
             
@@ -227,7 +227,10 @@
 <a name='L168'></a><a href='#L168'>168</a>
 <a name='L169'></a><a href='#L169'>169</a>
 <a name='L170'></a><a href='#L170'>170</a>
-<a name='L171'></a><a href='#L171'>171</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L171'></a><a href='#L171'>171</a>
+<a name='L172'></a><a href='#L172'>172</a>
+<a name='L173'></a><a href='#L173'>173</a>
+<a name='L174'></a><a href='#L174'>174</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -272,6 +275,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -294,25 +319,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -379,7 +385,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -414,7 +420,7 @@ const authUser = asyncHandler(async (req, res) =&gt; {
       _id: user._id,
       name: user.name,
       email: user.email,
-      isAdmin: user.isAdmin,
+      //isAdmin: user.isAdmin,
       token: generateToken(user._id),
     })
   } else {
@@ -427,7 +433,7 @@ const authUser = asyncHandler(async (req, res) =&gt; {
 // @route   POST /api/users
 // @access  Public
 const registerUser = asyncHandler(<span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
-  const { name, email, password } = <span class="cstat-no" title="statement not covered" >req.body</span>
+  const { name, email, password, company, states } = <span class="cstat-no" title="statement not covered" >req.body</span>
 &nbsp;
   const userExists = <span class="cstat-no" title="statement not covered" >await User.findOne({ email })</span>
 &nbsp;
@@ -440,6 +446,8 @@ const registerUser = asyncHandler(<span class="fstat-no" title="function not cov
     name,
     email,
     password,
+    company,
+    states
   })
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  if (user) {</span>
@@ -447,7 +455,7 @@ const registerUser = asyncHandler(<span class="fstat-no" title="function not cov
       _id: user._id,
       name: user.name,
       email: user.email,
-      isAdmin: user.isAdmin,
+      //isAdmin: user.isAdmin,
       token: generateToken(user._id),
     })
   } else {
@@ -467,7 +475,8 @@ const getUserProfile = asyncHandler(<span class="fstat-no" title="function not c
       _id: user._id,
       name: user.name,
       email: user.email,
-      isAdmin: user.isAdmin,
+      company: user.company
+     // isAdmin: user.isAdmin,
     })
   } else {
 <span class="cstat-no" title="statement not covered" >    res.status(404)</span>
@@ -494,7 +503,7 @@ const updateUserProfile = asyncHandler(<span class="fstat-no" title="function no
       _id: updatedUser._id,
       name: updatedUser.name,
       email: updatedUser.email,
-      isAdmin: updatedUser.isAdmin,
+   //   isAdmin: updatedUser.isAdmin,
       token: generateToken(updatedUser._id),
     })
   } else {
@@ -549,7 +558,7 @@ const updateUser = asyncHandler(<span class="fstat-no" title="function not cover
 <span class="cstat-no" title="statement not covered" >  if (user) {</span>
 <span class="cstat-no" title="statement not covered" >    user.name = req.body.name || user.name</span>
 <span class="cstat-no" title="statement not covered" >    user.email = req.body.email || user.email</span>
-<span class="cstat-no" title="statement not covered" >    user.isAdmin = req.body.isAdmin</span>
+   // user.isAdmin = req.body.isAdmin
 &nbsp;
     const updatedUser = <span class="cstat-no" title="statement not covered" >await user.save()</span>
 &nbsp;
@@ -557,7 +566,7 @@ const updateUser = asyncHandler(<span class="fstat-no" title="function not cover
       _id: updatedUser._id,
       name: updatedUser.name,
       email: updatedUser.email,
-      isAdmin: updatedUser.isAdmin,
+      //isAdmin: updatedUser.isAdmin,
     })
   } else {
 <span class="cstat-no" title="statement not covered" >    res.status(404)</span>
@@ -574,7 +583,7 @@ export { authUser, registerUser, getUserProfile, updateUserProfile, getUsers, de
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sun Mar 07 2021 18:05:59 GMT-0600 (Central Standard Time)
+                at Tue Mar 09 2021 00:22:43 GMT-0600 (Central Standard Time)
             </div>
         </div>
         <script src="../prettify.js"></script>

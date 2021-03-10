@@ -1,4 +1,4 @@
-export default  {
+export default {
     testEnvironment: "node",
     coveragePathIgnorePatterns: [
         "/node_modules/",
@@ -8,7 +8,9 @@ export default  {
     collectCoverageFrom: [
         "routes/**/*.{js,jsx}",
         "middleware/**/*.{js,jsx}",
+        "models/**/*.{js,jsx}",
         "utils/**/*.{js,jsx}",
+        "controllers/**/*.{js,jsx}",
 
     ],
     collectCoverage: true,

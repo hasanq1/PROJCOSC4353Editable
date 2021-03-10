@@ -42,8 +42,7 @@ describe('app', () => {
             .get('/api/orders')
             .set('Authorization', `Bearer ${token}`)
             .then((response) => {
-                expect(response.statusCode).toBe(401); //fix 
-                expect(response.type).toBe('');
+                expect(response.statusCode).toBe(200); //fix 
             });
     });
 
