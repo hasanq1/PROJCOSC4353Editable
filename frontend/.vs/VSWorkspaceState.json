@@ -1,8 +1,11 @@
 {
   "ExpandedNodes": [
     "",
+    "\\src",
+    "\\src\\actions",
+    "\\src\\screens",
     "\\__tests__"
   ],
-  "SelectedNode": "\\.gitignore",
+  "SelectedNode": "\\src\\screens\\CartScreen.js",
   "PreviewInSolutionExplorer": false
 }

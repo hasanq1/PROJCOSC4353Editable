@@ -20,6 +20,7 @@ const ProfileScreen = ({ location, history }) => {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [message, setMessage] = useState(null)
 
+
   const dispatch = useDispatch()
 
   const userDetails = useSelector((state) => state.userDetails)
@@ -32,7 +33,10 @@ const ProfileScreen = ({ location, history }) => {
   const { success } = userUpdateProfile
 
   const orderListMy = useSelector((state) => state.orderListMy)
-  const { loading: loadingOrders, error: errorOrders, orders } = orderListMy
+    const { loading: loadingOrders, error: errorOrders, orders } = orderListMy
+
+
+
 
   useEffect(() => {
     if (!userInfo) {

@@ -1,18 +1,27 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Router } from 'react-router-dom'
 import { Button, Row, Col, ListGroup, Image, Card, Form } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import CheckoutSteps from '../components/CheckoutSteps'
-import { createOrder } from '../actions/orderActions'
+import { createOrder, listMyOrders  } from '../actions/orderActions'
 import { ORDER_CREATE_RESET } from '../constants/orderConstants'
 import { USER_DETAILS_RESET } from '../constants/userConstants'
+import { OrderCheck } from './OrderCheck'
 
+const PlaceOrderScreen = ({ match, history }) => {
 
-const PlaceOrderScreen = ({ history }) => {
   const dispatch = useDispatch()
 
-  const cart = useSelector((state) => state.cart)
+    const cart = useSelector((state) => state.cart)
+
+
+    const userLogin = useSelector((state) => state.userLogin)
+    const { userInfo } = userLogin
+
+    const orderCreate = useSelector((state) => state.orderCreate)
+    const { order, success, error } = orderCreate
+
 
   if (!cart.shippingAddress.address) {
     history.push('/shipping')
@@ -27,16 +36,34 @@ const PlaceOrderScreen = ({ history }) => {
   cart.itemsPrice = addDecimals(
     cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
   )
-  cart.shippingPrice = addDecimals(cart.itemsPrice > 100 ? 0 : 100)
-  cart.taxPrice = addDecimals(Number((0.15 * cart.itemsPrice).toFixed(2)))
+
+
+    if (cart.shippingAddress.states == "TX") {
+        cart.shippingPrice = .02
+    }
+    else {
+        cart.shippingPrice = .04
+    }
+
+
+  
+      
+
+ 
+    
+    
+
   cart.totalPrice = (
     Number(cart.itemsPrice) +
     Number(cart.shippingPrice) +
-    Number(cart.taxPrice)
+    Number(cart.orderbefore)
   ).toFixed(2)
 
-  const orderCreate = useSelector((state) => state.orderCreate)
-  const { order, success, error } = orderCreate
+
+
+    useEffect(() => {
+        dispatch(listMyOrders())
+    }, [dispatch])
 
   useEffect(() => {
     if (success) {
@@ -60,6 +87,7 @@ const PlaceOrderScreen = ({ history }) => {
       })
     )
   }
+
   return (
     <>
       <CheckoutSteps step1 step2 step3 step4 />
@@ -135,8 +163,8 @@ const PlaceOrderScreen = ({ history }) => {
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Tax</Col>
-                  <Col>${cart.taxPrice}</Col>
+                  <Col>Previous</Col>
+                  <Col>${cart.orderbefore}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
