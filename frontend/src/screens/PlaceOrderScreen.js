@@ -25,16 +25,13 @@ const PlaceOrderScreen = ({ match, history }) => {
     return (Math.round(num * 100) / 100).toFixed(2)
   }
 
-  cart.itemsPrice = addDecimals(
-    cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
-    )
 
-    cart.itemsPrice2 = addDecimals(
-        cart.cartItems.reduce((acc, item) => acc + item.qty, 0)
-    )
-    
+    cart.itemsPrice2 = cart.cartItems.reduce((acc, item) => acc + item.qty, 0)
 
-    var x 
+
+
+    var x;
+    var z;
 
     if (cart.shippingAddress.states == "TX") {
         cart.shippingPrice = .02
@@ -58,15 +55,24 @@ const PlaceOrderScreen = ({ match, history }) => {
         x = .03
     }        
 
-    let y = .1 
+    var y; 
+     y = .1 
+
 
   cart.totalPrice = (
-    Number(cart.itemsPrice) +
     Number(cart.shippingPrice) +
     Number(cart.orderbefore) +
     Number(x) + 
     Number (y)
-  ).toFixed(2)
+    ).toFixed(2)
+
+    cart.itemsQuan = cart.cartItems.reduce((acc, item) => acc + item.qty, 0)
+
+    cart.itemsPrice = cart.cartItems.reduce((acc, item) => acc + item.price, 0)
+
+    var taxes = (Number(cart.itemsPrice) * Number(cart.totalPrice)).toFixed(3)
+    var sugPrice = (Number(taxes) + Number(cart.itemsPrice)).toFixed(3)
+    var finalPrice = (Number(cart.itemsQuan) * Number(sugPrice)).toFixed(2)
 
     const orderCreate = useSelector((state) => state.orderCreate)
     const { order, success, error } = orderCreate
@@ -77,7 +83,7 @@ const PlaceOrderScreen = ({ match, history }) => {
 
   useEffect(() => {
     if (success) {
-      history.push(`/order/${order._id}`)
+      history.push('/profile')
       dispatch({ type: USER_DETAILS_RESET })
       dispatch({ type: ORDER_CREATE_RESET })
     }
@@ -92,8 +98,13 @@ const PlaceOrderScreen = ({ match, history }) => {
         paymentMethod: cart.paymentMethod,
         itemsPrice: cart.itemsPrice,
         shippingPrice: cart.shippingPrice,
-        taxPrice: cart.taxPrice,
-        totalPrice: cart.totalPrice,
+        orderbefore: cart.orderbefore,
+        totalPrice: finalPrice,
+        Quantity: x, 
+        Companys: y,
+        Margin: taxes,
+        Suggested: sugPrice,
+        TaxPrice: z
       })
     )
   }
@@ -114,11 +125,6 @@ const PlaceOrderScreen = ({ match, history }) => {
               </p>
             </ListGroup.Item>
 
-            <ListGroup.Item>
-              <h2>Payment Method</h2>
-              <strong>Method: </strong>
-              {cart.paymentMethod}
-            </ListGroup.Item>
 
             <ListGroup.Item>
               <h2>Order Items</h2>
@@ -143,7 +149,7 @@ const PlaceOrderScreen = ({ match, history }) => {
                           </Link>
                         </Col>
                         <Col md={4}>
-                          {item.qty} x ${item.price} = ${item.qty * item.price}
+                          Quantity: {item.qty} 
                         </Col>
                       </Row>
                     </ListGroup.Item>
@@ -157,12 +163,12 @@ const PlaceOrderScreen = ({ match, history }) => {
           <Card>
             <ListGroup variant='flush'>
               <ListGroup.Item>
-                <h2>Order Summary</h2>
+                <h2>Quote Summary</h2>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Items</Col>
-                  <Col>${cart.itemsPrice}</Col>
+                  <Col>{cart.itemsPrice2}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
@@ -189,10 +195,22 @@ const PlaceOrderScreen = ({ match, history }) => {
                   <Col>${y}</Col>
                 </Row>
                 </ListGroup.Item>
+                <ListGroup.Item>
+                  <Row>
+                  <Col>Margin</Col>
+                  <Col>${taxes}</Col>
+                </Row>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <Row>
+                  <Col>Suggested Price/Gallon</Col>
+                  <Col>${sugPrice}</Col>
+                </Row>
+                </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Total</Col>
-                  <Col>${cart.totalPrice}</Col>
+                  <Col>${finalPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
@@ -205,7 +223,7 @@ const PlaceOrderScreen = ({ match, history }) => {
                   className='btn-block'
                   disabled={cart.cartItems === 0}
                   onClick={placeOrderHandler}>
-                  Place Order
+                  Save Quote
                 </Button>
               </ListGroup.Item>
             </ListGroup>

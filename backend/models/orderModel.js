@@ -36,7 +36,7 @@ const orderSchema = mongoose.Schema(
       update_time: { type: String },
       email_address: { type: String },
     },
-    taxPrice: {
+    orderbefore: {
       type: Number,
       required: true,
       default: 0.0,
@@ -49,6 +49,31 @@ const orderSchema = mongoose.Schema(
     totalPrice: {
       type: Number,
       required: true,
+      default: 0.0,
+    },
+    Quantity: {
+      type: Number,
+      required: true,
+      default: 0.0,
+    },
+    Companys: {
+      type: Number,
+      required: true,
+      default: 0.0,
+    },
+    Margin: {
+      type: Number,
+      required: true,
+      default: 0.0,
+        },
+    Suggested: {
+      type: Number,
+      required: true,
+      default: 0.0,
+    },
+    TaxPrice: {
+      type: Number,
+      required: false,
       default: 0.0,
     },
     isPaid: {

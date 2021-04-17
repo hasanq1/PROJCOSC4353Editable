@@ -103,7 +103,7 @@ const CartScreen = ({match, location, history}) => {
                     disabled={cartItems.length === 0}
                     onClick={checkoutHandler}
                   >
-                    Proceed To Checkout
+                    Proceed To Get Quote
                   </Button>
                 </ListGroup.Item>
               </ListGroup>

@@ -34,7 +34,7 @@ const HomeScreen = ({ match }) => {
             Go Back
           </Link>
         )}
-        <h1>Current Feul Available</h1>
+        <h1>Current Fuel Available</h1>
         {loading ? (
           <Loader />
         ) : error ? (

@@ -9,6 +9,8 @@ import Loader from '../components/Loader'
 import { getOrderDetails, payOrder, deliverOrder } from '../actions/orderActions'
 import { ORDER_PAY_RESET, ORDER_DELIVER_RESET } from '../constants/orderConstants'
 import DatePicker from 'react-date-picker';
+import { LinkContainer } from 'react-router-bootstrap'
+
 
 const OrderScreen = ({ match, history }) => {
   const orderId = match.params.id
@@ -104,31 +106,10 @@ const OrderScreen = ({ match, history }) => {
                 {order.shippingAddress.postalCode},{' '}
                 {order.shippingAddress.states}
               </p>
-              <ListGroup.Item>
-                  <Form.Label>Select Delivery Date</Form.Label>
-                  <DatePicker onChange={onChange} value={order.valueDate}/>
-                </ListGroup.Item>
-              {order.isDelivered ? (
-                <Message variant='success'>
-                  Delivered on {order.valueDate}
-                </Message>
-              ):(
-                <Message variant='danger'>Not Delivered</Message>
-              )}
+              
             </ListGroup.Item>
 
-            <ListGroup.Item>
-              <h2>Payment Method</h2>
-              <p>
-                <strong>Method: </strong>
-                {order.paymentMethod}
-              </p>
-              {order.isPaid ? (
-                <Message variant='success'>Paid on {order.paidAt}</Message>
-              ):(
-                <Message variant='danger'>Not Paid</Message>
-              )}
-            </ListGroup.Item>
+
 
             <ListGroup.Item>
               <h2>Order Items</h2>
@@ -167,7 +148,7 @@ const OrderScreen = ({ match, history }) => {
           <Card>
             <ListGroup variant='flush'>
               <ListGroup.Item>
-                <h2>Order Summary</h2>
+                <h2>Quote Summary</h2>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
@@ -177,14 +158,38 @@ const OrderScreen = ({ match, history }) => {
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Shipping</Col>
+                  <Col>Location Factor </Col>
                   <Col>${order.shippingPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Tax</Col>
-                  <Col>${order.taxPrice}</Col>
+                  <Col>Rate History Factor</Col>
+                  <Col>${order.orderbefore}</Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col>Gallons Requested Factor</Col>
+                  <Col>${order.Quantity}</Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col>Company Profit Factor</Col>
+                  <Col>${order.Companys}</Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col>Margin</Col>
+                  <Col>${order.Margin}</Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col>Suggested Price/Gallon</Col>
+                  <Col>${order.Suggested}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
@@ -193,33 +198,11 @@ const OrderScreen = ({ match, history }) => {
                   <Col>${order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              {!order.isPaid && (
-                <ListGroup.Item>
-                  {loadingPay && <Loader />}
-                  {!sdkReady ? (
-                    <Loader />
-                  ):(
-                    <PayPalButton
-                      amount={order.totalPrice}
-                      onSuccess={successPaymentHandler}
-                    />
-                  )}
-                </ListGroup.Item>
-              )}
-              {loadingDeliver && <Loader />}
-              {userInfo &&
-                userInfo.isAdmin &&
-                order.isPaid &&
-                !order.isDelivered && (
-                  <ListGroup.Item>
-                    <Button
-                      type='button'
-                      className='btn btn-block'
-                      onClick={deliverHandler}>
-                      Mark As Delivered
-                    </Button>
-                  </ListGroup.Item>
-                )}
+                    <LinkContainer to={'/profile'}>
+                      <Button className='btn-sm' variant='dark'>
+                        Back to previous quotes
+                      </Button>
+                    </LinkContainer>
             </ListGroup>
           </Card>
         </Col>

@@ -185,7 +185,6 @@ const ProfileScreen = ({ location, history }) => {
                   <td>{order.createdAt.substring(0, 10)}</td>
                   <td>{order.totalPrice}</td>
 
-
                       <td > 
                           <ListGroup  >
                               {order.orderItems.map((item, index) => (
