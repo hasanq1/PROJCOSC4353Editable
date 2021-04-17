@@ -5,7 +5,12 @@ import FormContainer from '../components/FormContainer'
 import CheckoutSteps from '../components/CheckoutSteps'
 import { saveShippingAddress } from '../actions/cartActions'
 
+
 const ShippingScreen = ({ history }) => {
+
+    const orderListMy2 = useSelector((state) => state.orderListMy)
+    const { loading: loadingOrders, error: errorOrders, orders } = orderListMy2
+
   const cart = useSelector((state) => state.cart)
   const { shippingAddress } = cart
 
@@ -14,16 +19,21 @@ const ShippingScreen = ({ history }) => {
   const [city, setCity] = useState(shippingAddress.city)
   const [postalCode, setPostalCode] = useState(shippingAddress.postalCode)
   const [states, setStates] = useState(shippingAddress.state)
+  const [before, setBefore] = useState(shippingAddress.before)
+
+
 
   const dispatch = useDispatch()
 
   const submitHandler = (e) => {
     e.preventDefault()
-    dispatch(saveShippingAddress({ address, addressOpt, city, postalCode, states }))
+      dispatch(saveShippingAddress({ address, addressOpt, city, postalCode, states, before }))
     history.push('/payment')
   }
 
-  return (
+
+    return (
+
     <FormContainer>
       <CheckoutSteps step1 step2 />
       <h1>Shipping</h1>
@@ -46,7 +56,7 @@ const ShippingScreen = ({ history }) => {
             value={addressOpt}
             onChange={(e) => setAddressOpt(e.target.value)}
           ></Form.Control>
-        </Form.Group>
+                </Form.Group>
 
         <Form.Group controlId='city'>
           <Form.Label>City</Form.Label>
@@ -78,6 +88,7 @@ const ShippingScreen = ({ history }) => {
           custom
           value={states}
           onChange={(e) => setStates(e.target.value)}>
+          
           <option value='AL'>ALABAMA</option> <option value='AK'>ALASKA</option> <option value='AZ'>ARIZONA</option> 
           <option value='AR'>ARKANSAS</option> <option value='CA'>CALIFORNIA</option> <option value='CO'>COLORADO</option> 
           <option value='CT'>CONNETTICUT</option> <option value='DE'>DELAWARE</option> <option value='FL'>FLORIDA</option> 
@@ -98,11 +109,29 @@ const ShippingScreen = ({ history }) => {
           </Form.Control>
         </Form.Group>
 
+
+                <Form.Group controlId='Orderbefore'>
+                    <Form.Label>Have you ordered before?</Form.Label>
+                    <Form.Control
+                        as='select'
+                        custom
+                        value={before}
+                        onChange={(e) => setBefore(e.target.value)}>
+                        <option disabled> If you have ordered before you will have the option to click yes </option> 
+                        <option > No </option>
+                        {orders.slice(0, 1).map((order) => (
+                            <option value="yes" > Yes </option>
+                        ))} 
+                    </Form.Control>
+                </Form.Group>
+
         <Button type='submit' variant='primary'>
           Continue
         </Button>
       </Form>
     </FormContainer>
+
+
   )
 }
 

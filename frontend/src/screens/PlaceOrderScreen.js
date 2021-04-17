@@ -12,15 +12,7 @@ import { OrderCheck } from './OrderCheck'
 const PlaceOrderScreen = ({ match, history }) => {
 
   const dispatch = useDispatch()
-
-    const cart = useSelector((state) => state.cart)
-
-
-    const userLogin = useSelector((state) => state.userLogin)
-    const { userInfo } = userLogin
-
-    const orderCreate = useSelector((state) => state.orderCreate)
-    const { order, success, error } = orderCreate
+  const cart = useSelector((state) => state.cart)
 
 
   if (!cart.shippingAddress.address) {
@@ -35,8 +27,14 @@ const PlaceOrderScreen = ({ match, history }) => {
 
   cart.itemsPrice = addDecimals(
     cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
-  )
+    )
 
+    cart.itemsPrice2 = addDecimals(
+        cart.cartItems.reduce((acc, item) => acc + item.qty, 0)
+    )
+    
+
+    var x 
 
     if (cart.shippingAddress.states == "TX") {
         cart.shippingPrice = .02
@@ -46,20 +44,32 @@ const PlaceOrderScreen = ({ match, history }) => {
     }
 
 
-  
-      
+    if (cart.shippingAddress.before == "yes") {
+        cart.orderbefore = -.01
+    }
+    else {
+        cart.orderbefore = 0
+    }
 
- 
-    
-    
+    if (cart.itemsPrice2 > 1000 ) {
+        x = .02
+    }
+    else {
+        x = .03
+    }        
+
+    let y = .1 
 
   cart.totalPrice = (
     Number(cart.itemsPrice) +
     Number(cart.shippingPrice) +
-    Number(cart.orderbefore)
+    Number(cart.orderbefore) +
+    Number(x) + 
+    Number (y)
   ).toFixed(2)
 
-
+    const orderCreate = useSelector((state) => state.orderCreate)
+    const { order, success, error } = orderCreate
 
     useEffect(() => {
         dispatch(listMyOrders())
@@ -157,16 +167,28 @@ const PlaceOrderScreen = ({ match, history }) => {
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Shipping</Col>
+                  <Col>Location Factor</Col>
                   <Col>${cart.shippingPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Previous</Col>
+                  <Col>Rate History Factor</Col>
                   <Col>${cart.orderbefore}</Col>
                 </Row>
-              </ListGroup.Item>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                <Row>
+                  <Col>Gallons Requested Factor </Col>
+                  <Col>${x}</Col>
+                  </Row>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <Row>
+                  <Col>Company Profit Factor</Col>
+                  <Col>${y}</Col>
+                </Row>
+                </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Total</Col>

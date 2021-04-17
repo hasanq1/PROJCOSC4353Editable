@@ -3,9 +3,8 @@
     "",
     "\\controllers",
     "\\middleware",
-    "\\models",
     "\\routes"
   ],
-  "SelectedNode": "\\.gitignore",
+  "SelectedNode": "\\routes\\orderRoutes.test.js",
   "PreviewInSolutionExplorer": false
 }

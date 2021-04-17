@@ -8,12 +8,11 @@ export default {
     collectCoverageFrom: [
         "routes/**/*.{js,jsx}",
         "middleware/**/*.{js,jsx}",
-        "models/**/*.{js,jsx}",
-        "utils/**/*.{js,jsx}",
-        "controllers/**/*.{js,jsx}",
+
 
     ],
     collectCoverage: true,
+    coverageReporters: ["json", "html","json", "lcov", "text"],
     transform: {
         "\\.js$": "<rootDir>/node_modules/babel-jest"
     }
